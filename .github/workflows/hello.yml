@@ -4,7 +4,7 @@ name: hello worflow
 # Trigger the workflow Every day at midnight UTC
 on:
   schedule:
-    - cron: "0 0 * * *"  # Every day at midnight UTC
+    - cron: "0 9 * * 1"  # Every day at midnight UTC
 
 # Define the jobs that will run in this workflow
 jobs:
