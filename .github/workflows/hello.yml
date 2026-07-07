@@ -1,28 +1,46 @@
-# Workflow
+# Name of the worflow
+name: hello worflow
 
-name: Hello
-
-# On tells when the workflow should run
-
+# Trigger the workflow Every day at midnight UTC
 on:
-  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"  # Every day at midnight UTC
 
-# Job tells what the workflow should do, there can be one or more than one jobs, hence we writ jobs
-# job is an object so needs indentations
-
+# Define the jobs that will run in this workflow
 jobs:
-  # 1st job
-  say-hello:
-    # create an ephermal container with ubuntu runing
+  greet:
+
+    # specify the runner environment
     runs-on: ubuntu-latest
-    # that emphermal  container will have steps to execute , hence name those steps and use run: run has the command 
+    
+    # Steps represents of tasks executed as a part of the job
     steps:
-      - name: Say hello to everyone
-        run: echo "Hello Dosto"
-# Steps
+      # Step 1: Checkout the repository 
+      - name: Check repository
+        uses: actions/checkout@v4
+        
+      # Step 2: Print greeting
+      - name: Print greeting
+        run: echo "Hello from GitHub Actions!"
 
-# Should be insite the job
+      # Step 3: Print the current date and time
+      - name: Print the current date and time
+        run: date
 
-# Actions
+      # Step 4: Print branch name
+      - name: Print branch name
+        run: |
+          echo "Triggered by branch: ${{ github.ref_name }}"
 
-# Should be inside the Steps
+      # Step 5 List repo file
+      - name: List repo files
+        run: ls -la
+
+      # Step 6 Print runner operating system
+      - name: Print runner OS
+        run: |
+          echo "Runner OS: ${{ runner.os}}"
+
+      # Step 6 Intentionally fail    
+      # - name: Break the workflow on purpose
+      #   run: exit 1
