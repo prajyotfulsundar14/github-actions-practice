@@ -13,7 +13,7 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - name: runs when the branch is main
-       if: github.ref == 'refs/heads/main1'
+       if: github.ref1 == 'refs/heads/main1'
        run: |
         echo "runs when the branch is main"
         # exit 1
