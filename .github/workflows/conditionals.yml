@@ -5,7 +5,7 @@ on:
 #  push:
 #    branches: [main]
  pull_request:
-   branches: [main1]
+   branches: [main]
  workflow_dispatch:
 
 jobs:
@@ -13,10 +13,10 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - name: runs when the branch is main
-       if: github.ref1 == 'refs/heads/main1'
+       if: github.ref == 'refs/heads/main'
        run: |
         echo "runs when the branch is main"
-        # exit 1
+       exit 1
 
      - name: only runs when the previous step failed
        if: failure()
